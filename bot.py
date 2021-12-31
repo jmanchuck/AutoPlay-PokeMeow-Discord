@@ -45,12 +45,21 @@ try:
     DRIVER = CustomDriver(ARGUMENTS)
     BAG = Bag(DRIVER)
 
+    if ARGUMENTS.F:
+        print("Will fish")
+
     while True:
 
-        pkmn = Pokemon(BAG, DRIVER)
-        FEEDBACK.add_pkmn(pkmn)
-        print(pkmn)
+        if ARGUMENTS.F:
+            fish = Fish(BAG, DRIVER)
+            FEEDBACK.add_fish(fish)
+            print(fish)
+            DRIVER.attente(10, 'next catch')
+            BAG.reassort()
 
+        # pkmn = Pokemon(BAG, DRIVER)
+        # FEEDBACK.add_pkmn(pkmn)
+        # print(pkmn)
         DRIVER.attente(10, f'next { "fish" if ARGUMENTS.F else "catch" }.')
         print('##########################################')
 
